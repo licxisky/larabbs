@@ -34,7 +34,13 @@
                         </a>
                         <span> • </span>
                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                        <span class="timeago" title="最后活跃于">{{ $topic->updated_at->diffForHumans() }}</span>
+                        <span class="timeago" title="最后活跃于">
+                            @if(if_query('order', 'recent'))
+                            {{ $topic->created_at->diffForHumans() }}
+                            @else
+                            {{ $topic->updated_at->diffForHumans() }}
+                            @endif
+                        </span>
                     </div>
 
                 </div>
